@@ -5,7 +5,7 @@ Vue.component('space', {
 			if(this.display===''){
 				// this is "I have not been clicked yet"
 				
-				this.display='X';
+				this.display=this.symbol;
 				this.$emit('new');
 			}
 			else{
@@ -15,7 +15,7 @@ Vue.component('space', {
 			}
 		}
 	},
-	props:['markers', 'turn'],
+	props:['symbol'],
 	data: function(){
 		return{
 			display:''
@@ -36,10 +36,21 @@ var app = new Vue({
   },
   methods: {
   	newClick: function(){
-  		alert('clicked a new space');
+  		console.log('clicked a new space');
+  		this.turn++;
+  		this.checkForWin();
+  		this.checkForDraw();
   	}, 
   	repeatClick: function(){
-  		alert('already clicked');
+  		console.log('already clicked');
+  	},
+  	checkForWin: function(){
+  		alert('check for win');
+
+  	},
+  	checkForDraw: function() {
+		alert('check for draw');  		
+
   	}
   }  
 
