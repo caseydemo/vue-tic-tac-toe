@@ -6,7 +6,8 @@ Vue.component('space', {
 				// this is "I have not been clicked yet"
 				
 				this.display=this.symbol;
-				this.$emit('new');
+				this.$emit('new', this.gridLocation); // gridLocation --> where it was clicked
+				console.log("this is the id of the square that was clicked: " + this.gridLocation);
 			}
 			else{
 				// "I have already been clicked"
@@ -15,10 +16,22 @@ Vue.component('space', {
 			}
 		}
 	},
-	props:['symbol'],
+	props:['symbol', 'gridLocation'],
 	data: function(){
 		return{
-			display:''
+			display:'',
+
+			space0: false,	// top left
+			space1: false,	// top center
+			space2: false,	// top right
+
+			space3: false,	// middle left	
+			space4: false,	// middle center
+			space5: false,	// middle right
+
+			space6: false,	// middle left
+			space7: false,	// middle center
+			space8: false	// middle right
 			
 		}
 		
@@ -31,12 +44,17 @@ var app = new Vue({
   el: '#app',
   data: {
   	markers: ['X', 'O'],
-  	turn: 0
+  	turn: 0,
+  	gridLocation: '',
+  	TL: 'top-left',
+  	TM: '6'
 
   },
   methods: {
-  	newClick: function(){
-  		console.log('clicked a new space');
+  	newClick: function( test ){
+  		
+  		console.log( 'gridLocation: ', this.gridLocation );
+  		
   		this.turn++;
   		this.checkForWin();
   		this.checkForDraw();
@@ -45,11 +63,11 @@ var app = new Vue({
   		console.log('already clicked');
   	},
   	checkForWin: function(){
-  		alert('check for win');
+  		// alert('check for win');
 
   	},
   	checkForDraw: function() {
-		alert('check for draw');  		
+		// alert('check for draw');  		
 
   	}
   }  
