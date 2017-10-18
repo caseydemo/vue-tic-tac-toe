@@ -45,15 +45,14 @@ var app = new Vue({
   data: {
   	markers: ['X', 'O'],
   	turn: 0,
-  	gridLocation: '',
-  	TL: 'top-left',
-  	TM: '6'
+  	gridLocation: ''
+  	
 
   },
   methods: {
   	newClick: function( test ){
   		
-  		console.log( 'gridLocation: ', this.gridLocation );
+  		this.gridLocation=test;
   		
   		this.turn++;
   		this.checkForWin();
